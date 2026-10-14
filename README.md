@@ -1,7 +1,7 @@
 
-  # MachadoeCampos
+  # MachadoCampos
 
-  This is a code bundle for MachadoeCampos. The original project is available at https://www.figma.com/design/VDGjtqTqeWcL1tN3Nuji2v/MachadoeCampos.
+  This is a code bundle for MachadoCampos. The original project is available at https://www.figma.com/design/VDGjtqTqeWcL1tN3Nuji2v/MachadoCampos.
 
   ## Running the code
 

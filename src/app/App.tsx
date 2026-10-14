@@ -7,7 +7,7 @@ import {
   CheckCircle, MessageCircle, ArrowUp, Building2, Wrench, Home, Grid2X2,
 } from "lucide-react";
 import { ImageWithFallback } from "@/app/components/figma/ImageWithFallback";
-import logoImg from "@/imports/logo.png";
+import logoImg from "@/imports/Logo.png";
 import proj1a from "@/imports/WhatsApp_Image_2026-07-27_at_15.35.03__2_.jpeg";
 import proj1b from "@/imports/WhatsApp_Image_2026-07-27_at_15.35.03__3_.jpeg";
 import proj2a from "@/imports/wc1.png";
@@ -736,7 +736,12 @@ function CTA() {
   const [sent, setSent] = useState(false);
   const handle = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) =>
     setForm(prev => ({ ...prev, [e.target.name]: e.target.value }));
-  const submit = (e: React.FormEvent) => { e.preventDefault(); setSent(true); };
+  const submit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    const data = new URLSearchParams({ "form-name": "orcamento", ...form });
+    await fetch("/", { method: "POST", headers: { "Content-Type": "application/x-www-form-urlencoded" }, body: data.toString() });
+    setSent(true);
+  };
 
   const fld: React.CSSProperties = { width: "100%", border: "1px solid rgba(255,255,255,0.13)", background: "rgba(255,255,255,0.06)", padding: "12px 14px", fontSize: 13, color: "#fff", borderRadius: 2, outline: "none", fontFamily: "inherit", boxSizing: "border-box" };
   const lbl: React.CSSProperties = { display: "block", fontSize: 9.5, fontWeight: 600, letterSpacing: "0.17em", textTransform: "uppercase", color: "rgba(255,255,255,0.32)", marginBottom: 6 };
@@ -808,7 +813,9 @@ function CTA() {
                 </button>
               </div>
             ) : (
-              <form onSubmit={submit} style={{ display: "flex", flexDirection: "column", gap: 12 }}>
+              <form name="orcamento" onSubmit={submit} data-netlify="true" data-netlify-honeypot="bot-field" style={{ display: "flex", flexDirection: "column", gap: 12 }}>
+                <input type="hidden" name="form-name" value="orcamento" />
+                <input type="hidden" name="bot-field" />
                 <div className="cta-form-row">
                   <div><label style={lbl}>Nome *</label><input type="text" name="nome" value={form.nome} onChange={handle} placeholder="Nome completo" required style={fld} /></div>
                   <div><label style={lbl}>Telefone *</label><input type="tel" name="telefone" value={form.telefone} onChange={handle} placeholder="+351 9XX XXX XXX" required style={fld} /></div>
