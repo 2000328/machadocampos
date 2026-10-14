@@ -738,8 +738,11 @@ function CTA() {
     setForm(prev => ({ ...prev, [e.target.name]: e.target.value }));
   const submit = async (e: React.FormEvent) => {
     e.preventDefault();
-    const data = new URLSearchParams({ "form-name": "orcamento", ...form });
-    await fetch("/", { method: "POST", headers: { "Content-Type": "application/x-www-form-urlencoded" }, body: data.toString() });
+    await fetch("https://formspree.io/f/xgaonjbe", {
+      method: "POST",
+      headers: { "Accept": "application/json", "Content-Type": "application/json" },
+      body: JSON.stringify(form),
+    });
     setSent(true);
   };
 
@@ -813,9 +816,7 @@ function CTA() {
                 </button>
               </div>
             ) : (
-              <form name="orcamento" onSubmit={submit} data-netlify="true" data-netlify-honeypot="bot-field" style={{ display: "flex", flexDirection: "column", gap: 12 }}>
-                <input type="hidden" name="form-name" value="orcamento" />
-                <input type="hidden" name="bot-field" />
+              <form onSubmit={submit} style={{ display: "flex", flexDirection: "column", gap: 12 }}>
                 <div className="cta-form-row">
                   <div><label style={lbl}>Nome *</label><input type="text" name="nome" value={form.nome} onChange={handle} placeholder="Nome completo" required style={fld} /></div>
                   <div><label style={lbl}>Telefone *</label><input type="tel" name="telefone" value={form.telefone} onChange={handle} placeholder="+351 9XX XXX XXX" required style={fld} /></div>
