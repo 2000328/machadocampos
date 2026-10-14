@@ -7,7 +7,7 @@ import {
   CheckCircle, MessageCircle, ArrowUp, Building2, Wrench, Home, Grid2X2,
 } from "lucide-react";
 import { ImageWithFallback } from "@/app/components/figma/ImageWithFallback";
-import logoImg from "@/imports/Logo.png";
+import logoImg from "@/imports/logo.png";
 import proj1a from "@/imports/WhatsApp_Image_2026-07-27_at_15.35.03__2_.jpeg";
 import proj1b from "@/imports/WhatsApp_Image_2026-07-27_at_15.35.03__3_.jpeg";
 import proj2a from "@/imports/wc1.png";
